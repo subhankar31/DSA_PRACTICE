@@ -9,11 +9,11 @@ import java.util.List;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Test test=new Test();
-        test.candy();
+       // Test test=new Test();
+        //test.candy();
 
-    //ArraysPractice arraysPractice=new ArraysPractice();
-    //arraysPractice.streamExample();
+    ArraysPractice arraysPractice=new ArraysPractice();
+    arraysPractice.findDuplicate();
     //TestClassPractice testClassPractice=new TestClassPractice();
     //boolean result= testClassPractice.isPalindrome(121);
     //testClassPractice.leftRotateByOnePlace();

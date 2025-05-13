@@ -166,4 +166,139 @@ public class ArraysPractice {
         }
         System.out.println(longest);
   }
+    public void rotate() {
+        int [] nums={2,5,6,7,8,9};
+        int k=3;
+        int n = nums.length;
+        k = k % n;
+        int[] rotated = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            rotated[(i + k) % n] = nums[i];
+        }
+
+        for (int i = 0; i < n; i++) {
+            nums[i] = rotated[i];
+        }
+    }
+    public int subarraySum() {
+        int[] nums={5,9,1,2,3};
+        int k=3;
+        Map<Integer, Integer> cache = new HashMap<>();
+        cache.put(0, 1);
+        int count = 0;
+        int sum = 0;
+
+        for (int num : nums) {
+            sum += num;
+            int diff = sum - k;
+            if (cache.containsKey(diff)) {
+                count += cache.get(diff);
+            }
+            cache.put(sum, cache.getOrDefault(sum, 0) + 1);
+        }
+
+        return count;
+    }
+    public int rob() {
+        int n=5;
+        String str= String.valueOf(n);
+        int nums[]={1,2,3,1};
+        //int n = nums.length;
+
+        if (n == 1) {
+            return nums[0];
+        }
+
+        int[] dp = new int[n];
+
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0], nums[1]);
+
+        for (int i = 2; i < n; i++) {
+            dp[i] = Math.max(dp[i - 1], nums[i] + dp[i - 2]);
+        }
+
+        return dp[n - 1];
+    }
+    public void getMinMax() {
+        int arr[]={28078 ,19451 ,935 ,28892 ,2242 ,3570 ,5480 ,231};
+        // Code Here
+        int min=Integer.MAX_VALUE;
+        int max=Integer.MIN_VALUE;
+        for(int i=0;i<=arr.length-1;i++){
+            if(arr[i]>max){
+                max=arr[i];
+            }
+            if(arr[i]<min){
+                min=arr[i];
+            }
+        }
+    }
+
+    //Sort the array containing 0,1,2 using Deutch National flag algo
+    public void sort012(int[] arr) {
+        // code here
+        //3 pointers
+        int low=0;
+        int mid=0;
+        int high=arr.length-1;
+
+        //loop check
+        while(mid<=high){
+            //if its 0
+            if(arr[mid]==0){
+                int temp=arr[mid];
+                arr[mid]=arr[low];
+                arr[low]=temp;
+                mid++;
+                low++;
+            }
+
+            //If its 1
+            else if(arr[mid]==1){
+                mid++;
+            }
+
+            //if its 2
+            else{
+                int temp=arr[mid];
+                arr[mid]=arr[high];
+                arr[high]=temp;
+                high--;
+            }
+        }
+    }
+    public void moveNegativePositive(){
+        int arr[]={-12, 11, -13, -5, 6, -7, 5, -3, -6};
+        int low=0;
+        int high=arr.length-1;
+        while (low<=high){
+            if (arr[low]<0){
+                low++;
+            }
+            else if(arr[high]>0){
+                high--;
+            }else if(arr[low]>0){
+                int temp=arr[low];
+                arr[low]=arr[high];
+                arr[high]=temp;
+                low++;
+            }
+        }
+    }
+    public int findDuplicate() {
+        int [] nums={1,3,4,2,2};
+
+        for(int i = 0;i<nums.length;i++){
+
+            int index = Math.abs(nums[i]);
+            if(nums[index]<0)
+                return index;
+            nums[index] = -nums[index];
+
+        }
+
+        return -1;
+    }
 }
