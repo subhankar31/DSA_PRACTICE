@@ -288,6 +288,7 @@ public class ArraysPractice {
         }
     }
     public int findDuplicate() {
+        String str="1";
         int [] nums={1,3,4,2,2};
 
         for(int i = 0;i<nums.length;i++){
@@ -300,5 +301,6 @@ public class ArraysPractice {
         }
 
         return -1;
+
     }
 }

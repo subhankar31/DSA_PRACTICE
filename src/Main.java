@@ -1,6 +1,7 @@
 import arraypractice.ArraysPractice;
 import arraypractice.MaxSubArrayOfSum;
 import arraypractice.Test;
+import string.StringPractice;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,8 +13,10 @@ public class Main {
        // Test test=new Test();
         //test.candy();
 
-    ArraysPractice arraysPractice=new ArraysPractice();
-    arraysPractice.findDuplicate();
+    //ArraysPractice arraysPractice=new ArraysPractice();
+    //arraysPractice.findDuplicate();
+    StringPractice stringPractice=new StringPractice();
+        stringPractice.reverseWords();
     //TestClassPractice testClassPractice=new TestClassPractice();
     //boolean result= testClassPractice.isPalindrome(121);
     //testClassPractice.leftRotateByOnePlace();
