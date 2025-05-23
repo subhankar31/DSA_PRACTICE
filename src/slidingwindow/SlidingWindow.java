@@ -77,4 +77,27 @@ public class SlidingWindow {
 
         return res.stream().mapToInt(i -> i).toArray();
     }
+
+    //One more solution using 2 pointer where K is dynamic
+
+    public void maxSlidingWindowUsing2Pointer(int arr[], int k) {
+        int left = 0, right = 0;
+        int i, j;
+        ArrayList < Integer > maxx = new ArrayList < > ();
+        while (right < k - 1) {
+            right++;
+        }
+        while (right < arr.length) {
+            GetMax(arr, left, right, maxx);
+            left++;
+            right++;
+        }
+        //Result stored inside  maxx;
+    }
+    static void GetMax(int arr[], int l, int r, ArrayList < Integer > maxx) {
+        int i, maxi = Integer.MIN_VALUE;
+        for (i = l; i <= r; i++)
+            maxi = Math.max(maxi, arr[i]);
+        maxx.add(maxi);
+    }
 }
