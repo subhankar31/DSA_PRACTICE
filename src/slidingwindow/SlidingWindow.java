@@ -84,9 +84,11 @@ public class SlidingWindow {
         int left = 0, right = 0;
         int i, j;
         ArrayList < Integer > maxx = new ArrayList < > ();
+        //moving second pointer to place at k position
         while (right < k - 1) {
             right++;
         }
+        //traversing till end as right will reach the end first
         while (right < arr.length) {
             GetMax(arr, left, right, maxx);
             left++;
@@ -94,6 +96,7 @@ public class SlidingWindow {
         }
         //Result stored inside  maxx;
     }
+    //method to give max value in that window
     static void GetMax(int arr[], int l, int r, ArrayList < Integer > maxx) {
         int i, maxi = Integer.MIN_VALUE;
         for (i = l; i <= r; i++)
