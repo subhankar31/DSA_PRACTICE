@@ -109,7 +109,7 @@ public class SlidingWindow {
      The below solution usese 2 pointer approach and solves it using O(n) time complexity
      We can have other 2 pointer solution which uses o(2n) complexity
      */
-    public int longestOnes(int[] nums, int k) {
+    public int longestOnesOptimizedApproach(int[] nums, int k) {
         int start=0;
         int end=0;
         int zeros=0;
@@ -131,5 +131,23 @@ public class SlidingWindow {
         }
         //calculate the length of substring
         return end-start;
+    }
+    //Another solution of same above given problem
+    //time complexity O(2n)
+    public int longestOnesBetterApproach(int[] nums, int k) {
+        int left = 0, maxLength = 0, zeroCount = 0;
+        for (int right = 0; right < nums.length; ++right) {
+            if (nums[right] == 0) {
+                zeroCount++;
+            }
+            while (zeroCount > k) {
+                if (nums[left] == 0) {
+                    zeroCount--;
+                }
+                left++;
+            }
+            maxLength = Math.max(maxLength, right - left + 1);
+        }
+        return maxLength;
     }
 }
