@@ -103,4 +103,29 @@ public class SlidingWindow {
             maxi = Math.max(maxi, arr[i]);
         maxx.add(maxi);
     }
+    /**
+    Q- 1004. Max Consecutive Ones III
+    Leet Code link - https://leetcode.com/problems/max-consecutive-ones-iii/
+     The below solution usese 2 pointer approach and solves it using O(n) time complexity
+     We can have other 2 pointer solution which uses o(2n) complexity
+     */
+    public int longestOnes(int[] nums, int k) {
+        int start=0;
+        int end=0;
+        int zeros=0;
+
+        while(end<nums.length){
+            if(nums[end] == 0){
+                zeros++;
+            }
+            end++;
+            if(zeros>k){
+                if(nums[start] == 0){
+                    zeros--;
+                }
+                start++;
+            }
+        }
+        return end-start;
+    }
 }
