@@ -150,4 +150,59 @@ public class SlidingWindow {
         }
         return maxLength;
     }
+    //Q- Binary SubArray with sum
+    //Leet code URl- https://leetcode.com/problems/binary-subarrays-with-sum/description/
+    public int numSubarraysWithSum(int[] nums, int goal) {
+        return check(nums,goal)-check(nums,goal-1);
+        /**
+         * Reason behind above step like why we did check(nums,goal)-check(nums,goal-1);
+         * Tweek that in this question its asking number of subarrays rather than traditional
+         * 2 pointer based question where it asks only the length or subarray size
+         Example: Counting people by weight categories
+         Imagine you have a group of people, and each person has a specific weight. You want to know how many people weigh exactly 70 kg.
+
+         Step 1: Count all people weighing less than or equal to 70 kg
+         This will include people who weigh:
+
+         Less than 70 kg (like 60 kg, 50 kg, etc.)
+         Exactly 70 kg
+         Let’s say we count all the people who weigh 70 kg or less:
+
+         There are 25 people who weigh 70 kg or less.
+         We can represent this as fun(weights, goal=70) = 25.
+
+         Step 2: Count all people weighing less than or equal to 69 kg
+         Now, let’s count all the people who weigh 69 kg or less. These are people who weigh:
+
+         Less than 70 kg (like 69 kg, 60 kg, 50 kg, etc.)
+         But not those who weigh exactly 70 kg.
+         Let’s say there are 18 people who weigh 69 kg or less.
+
+         We can represent this as fun(weights, goal=69) = 18.
+
+         Step 3: Subtract the two results
+         To find out how many people weigh exactly 70 kg, we subtract:
+
+         fun(weights, goal=70) (people weighing 70 kg or less) = 25
+         fun(weights, goal=69) (people weighing 69 kg or less) = 18
+         The number of people who weigh exactly 70 kg is:
+
+         25 - 18 = 7 people. */
+    }
+    int check(int[] nums,int goal){
+        int n=nums.length;
+        if(goal<0)
+            return 0;
+        int l=0,r=0,count=0,sum=0;
+        while(r<n){
+            sum+=nums[r];
+            while(sum>goal){
+                sum-=nums[l];
+                l++;
+            }
+            count+=r-l+1;
+            r++;
+        }
+        return count;
+    }
 }
