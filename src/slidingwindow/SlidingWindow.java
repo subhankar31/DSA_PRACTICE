@@ -114,11 +114,14 @@ public class SlidingWindow {
         int end=0;
         int zeros=0;
 
+        //Move end pointer till end
         while(end<nums.length){
+            //increase 0 once you encounter 0
             if(nums[end] == 0){
                 zeros++;
             }
             end++;
+            //if xeros overflow then move left untill zeros are less than K
             if(zeros>k){
                 if(nums[start] == 0){
                     zeros--;
@@ -126,6 +129,7 @@ public class SlidingWindow {
                 start++;
             }
         }
+        //calculate the length of substring
         return end-start;
     }
 }
