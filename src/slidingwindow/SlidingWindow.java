@@ -205,4 +205,29 @@ public class SlidingWindow {
         }
         return count;
     }
+    /**
+     * Question - Leet Code 1358
+     * LeetCode URL -> https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/description/
+     * Video tutorial-> https://www.youtube.com/watch?v=xtqN4qlgr8s
+     */
+    public int numberOfSubstrings() {
+        String s="abcabc";
+        //Maintaining hash using array to memorize last seen of 3 characters
+        int[] lastSeen = {-1, -1, -1};
+        int count = 0;
+
+        //Traverse till end
+        for (int i = 0; i < s.length(); i++) {
+            //update the last seen of every character
+            lastSeen[s.charAt(i) - 'a'] = i;
+            //if its not -1 that means we got all three characters
+            if (lastSeen[0] != -1 && lastSeen[1] != -1 && lastSeen[2] != -1) {
+                //this works as the total substring it will generate ending at the position will be
+                //count+=minimum Index value + 1
+                //try using pen and paper
+                count += 1 + Math.min(lastSeen[0], Math.min(lastSeen[1], lastSeen[2]));
+            }
+        }
+        return count;
+    }
 }
