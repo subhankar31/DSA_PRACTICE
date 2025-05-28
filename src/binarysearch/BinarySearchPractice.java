@@ -10,13 +10,13 @@ public class BinarySearchPractice {
      */
     public int findPeakElement() {
         int[] nums={1,2,3,1};
-        int left=0;
-        int right= nums.length-1;
+        int left=1;
+        int right= nums.length-2;
         //if array has a single element
-        if (nums.length==1) return nums[0];
+        if (nums.length==1) return 0;
         //if first or last element is peak
-        if (nums[0]>nums[1]) return nums[0];
-        if (nums[nums.length-1]>nums[nums.length-2]) return nums[nums.length-1];
+        if (nums[0]>nums[1]) return 0;
+        if (nums[nums.length-1]>nums[nums.length-2]) return nums.length-1;
 
         //Iterate over
         while (left<=right){
