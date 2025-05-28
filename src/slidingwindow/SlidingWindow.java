@@ -229,5 +229,22 @@ public class SlidingWindow {
             }
         }
         return count;
+
+
+    }
+
+    /**
+     * Question -> Leet Code 1423. Maximum Points You Can Obtain from Cards
+     * Leet Code URL -> https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/description/
+     */
+
+    public void sumCheck(){
+        int [] nums={1,2,3,4,5,6,1};
+        int k=3;
+        int left=0;
+        int right=nums.length-1;
+        int maxSum=0;
+        while (left<=right){
+        }
     }
 }
