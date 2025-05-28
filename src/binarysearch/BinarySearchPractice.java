@@ -3,8 +3,8 @@ package binarysearch;
 public class BinarySearchPractice {
 
     /**
-     * Question -
-     * LeetCode URL-
+     * Question - FIND PEAK ELEMENT
+     * LeetCode URL- https://leetcode.com/problems/find-peak-element/description/
      * Solved using binary search algorithm
      * Time Complexity O(log n)
      */
