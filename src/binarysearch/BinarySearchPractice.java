@@ -77,4 +77,38 @@ public class BinarySearchPractice {
             }
             return low;
         }
+        /**
+         * Question Painters problem or LeetCode 410 Split Array Largest Sum
+         * Leet Code URL - > https://leetcode.com/problems/split-array-largest-sum/description/
+         */
+        public int splitArray(int[] nums, int k) {
+            ArrayList<Integer> inputArray=new ArrayList<>();
+            for (int num:nums)inputArray.add(num);
+            int low=Collections.max(inputArray);
+            int high=inputArray.stream()
+                    .mapToInt(Integer::intValue).sum();
+            while (low<=high){
+                int mid=(low+high)/2;
+                int subArray = calculatePossible(inputArray, mid);
+                if (subArray > k) {
+                    low = mid + 1;
+                } else {
+                    high = mid - 1;
+                }
+            }
+            return low;
+        }
+        int calculatePossible(ArrayList<Integer> nums,int mid){
+            int subArraay=1;
+            int sum=0;
+            for (int i=0;i<nums.size();i++){
+                if (sum+nums.get(i)<=mid){
+                    sum+=nums.get(i);
+                }else{
+                    subArraay++;
+                    sum=nums.get(i);
+                }
+            }
+            return subArraay;
+        }
 }
