@@ -111,4 +111,40 @@ public class BinarySearchPractice {
             }
             return subArraay;
         }
+    /**
+     * Binary Search of peak element on 2D array
+     * Leet Code URL - > https://leetcode.com/problems/find-a-peak-element-ii/description/
+     */
+
+    public int[] findPeakGrid() {
+        //matrix design of 3*3 and side elements are -1
+        //-1 -1 -1 -1
+        //-1 10 20 15 -1
+        //-1 1 30 14 -1
+        //-1 7 16 32 -1
+        //-1 -1 -1 -1
+        int [][] matrix= {{10,20,15},{1,30,14},{7,16,32}}; //Output: [1,1]
+        int n = matrix.length, m = matrix[0].length, lo = 0, hi = m - 1, mid;
+        while (lo <= hi) {
+            //Binary search way to get the mid column
+            mid = lo + (hi - lo) / 2;
+            int max_row = 0;
+            //in the mid column check the max element in the entire column
+            for (int i = 0; i < n; ++i) {
+                if (matrix[max_row][mid] < matrix[i][mid])
+                    max_row = i;
+            }
+            //if the max element is greater than all 4 adjacent then return peak element
+            if ((mid == 0 || matrix[max_row][mid] > matrix[max_row][mid - 1]) &&
+                    (mid == m - 1 || matrix[max_row][mid] > matrix[max_row][mid + 1]))
+                return new int[] {max_row, mid};
+            //traverse other part
+            else if (mid > 0 && matrix[max_row][mid - 1] > matrix[max_row][mid])
+                hi = mid - 1;
+            else
+                lo = mid + 1;
+        }
+        //if no peak element found
+        return new int[] {-1, -1};
+    }
 }
