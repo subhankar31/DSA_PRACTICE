@@ -55,6 +55,56 @@ class Solution {
         // plus 1 (to account for the current node)
         return Math.max(leftHeight, rightHeight) + 1;
     }
+
+    /**
+     * Given the root of a binary tree, return the length of the diameter of the tree.
+     * Leet Code URL-> https://leetcode.com/problems/diameter-of-binary-tree/description/
+     */
+
+    //to store the result
+        int maxDiameter=0;
+        public void diameterOfBinaryTree(Node root) {
+            //variable height is just to store the return value of recursive call
+            //actucal result is stored inside maxDiameter
+            int height=maxDiam(root);
+        }
+        int maxDiam(Node node){
+            //leaf node case
+            if(node==null) return 0;
+            //traverse till end in DFS manner
+            int lh=maxDiam(node.left);
+            int rh=maxDiam(node.right);
+            //here we update the max at each node based on the result from lh and rh
+            maxDiameter=Math.max(maxDiameter,lh+rh);
+
+            //returns the value
+            return 1+Math.max(lh,rh);
+        }
+    /**
+     * Maximum path sum
+     * LeetCode HARD
+     * URL- > https://leetcode.com/problems/binary-tree-maximum-path-sum/
+     */
+
+    int maxSum=Integer.MIN_VALUE;
+    public int maxPathSum(Node root) {
+        int result=calcSum(root);
+        return maxSum;
+    }
+    int calcSum(Node node){
+        if(node ==null) return 0;
+
+        int lh=calcSum(node.left);
+        if(lh<0) lh=0; //this is done to avoid negative values
+        int rh=calcSum(node.right);
+        if(rh<0) rh=0; //this is done to avoid negative values
+        maxSum=Math.max(maxSum,lh+rh+node.data); //calculating the maxSum here
+
+        //as we are concerned regarding max sum so we only return max between both lh and rh
+        //along with the current node data
+        return node.data + Math.max(lh,rh);
+    }
+
 }
 
 // Main function
@@ -71,6 +121,7 @@ public class Main {
 
         // Creating an instance of the Solution class
         Solution solution = new Solution();
+        solution.getHeight(root);
 
         // Checking if the tree is balanced
         if (solution.isBalanced(root)) {
