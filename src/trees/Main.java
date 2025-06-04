@@ -1,14 +1,19 @@
 package trees;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 class Node {
     int data;
     Node left;
     Node right;
 
     // Constructor to initialize
-    // the node with a value
-    Node(int val) {
-        data = val;
+    // the node with a dataue
+    Node(int data) {
+        data = Node.this.data;
         left = null;
         right = null;
     }
@@ -64,7 +69,7 @@ class Solution {
     //to store the result
         int maxDiameter=0;
         public void diameterOfBinaryTree(Node root) {
-            //variable height is just to store the return value of recursive call
+            //variable height is just to store the return dataue of recursive call
             //actucal result is stored inside maxDiameter
             int height=maxDiam(root);
         }
@@ -77,7 +82,7 @@ class Solution {
             //here we update the max at each node based on the result from lh and rh
             maxDiameter=Math.max(maxDiameter,lh+rh);
 
-            //returns the value
+            //returns the dataue
             return 1+Math.max(lh,rh);
         }
     /**
@@ -95,14 +100,57 @@ class Solution {
         if(node ==null) return 0;
 
         int lh=calcSum(node.left);
-        if(lh<0) lh=0; //this is done to avoid negative values
+        if(lh<0) lh=0; //this is done to avoid negative dataues
         int rh=calcSum(node.right);
-        if(rh<0) rh=0; //this is done to avoid negative values
+        if(rh<0) rh=0; //this is done to avoid negative dataues
         maxSum=Math.max(maxSum,lh+rh+node.data); //calculating the maxSum here
 
         //as we are concerned regarding max sum so we only return max between both lh and rh
         //along with the current node data
         return node.data + Math.max(lh,rh);
+    }
+    /**
+     * Zig Zag Tree Traversal
+     * Leet Code URl -> https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
+     */
+    public List<List<Integer>> zigzagLevelOrder(Node root) {
+        //store final result here
+        List<List<Integer>> ans = new ArrayList<>();
+        if (root == null) {
+            return ans;
+        }
+        //Queue to perform level order traversal
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        //flag to know the zig-zag manner
+        boolean even = true;
+
+        while (!q.isEmpty()) {
+            int n = q.size();
+            LinkedList<Integer> list = new LinkedList<>();
+            //traverse each level all element
+            for (int i = 0; i < n; i++) {
+                Node curr = q.poll();
+                if (even) {
+                    //here we are using the property od DeQueue in LinkedList
+                    list.addLast(curr.data);
+                } else {
+                    list.addFirst(curr.data);
+                }
+                //Add the child Nodes
+                if (curr.left != null) {
+                    q.add(curr.left);
+                }
+                if (curr.right != null) {
+                    q.add(curr.right);
+                }
+            }
+
+            ans.add(list);
+            //change the flag/toggle to sattisfy ZigZag requirement
+            even = !even;  // Toggle the even flag once per level, not per node
+        }
+        return ans;
     }
 
 }
@@ -119,6 +167,7 @@ public class Main {
         root.left.right.right = new Node(6);
         root.left.right.right.right = new Node(7);
 
+
         // Creating an instance of the Solution class
         Solution solution = new Solution();
         solution.getHeight(root);
@@ -130,4 +179,5 @@ public class Main {
             System.out.println("The tree is not balanced.");
         }
     }
+
 }
