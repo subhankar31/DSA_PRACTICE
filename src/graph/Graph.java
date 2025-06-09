@@ -8,7 +8,8 @@ public class Graph {
     public void addEdge(int u, int v) {
         adjList.putIfAbsent(u, new ArrayList<>());
         adjList.putIfAbsent(v, new ArrayList<>());
-        adjList.get(u).add(v);  // for undirected graph also do: adjList.get(v).add(u);
+        adjList.get(u).add(v);
+        adjList.get(v).add(u); // for undirected graph i.e both side traversal
     }
 
     public void printGraph() {
