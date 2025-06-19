@@ -50,9 +50,6 @@ class DisjointSet {
         }
     }
 
-}
-
-class Main {
     public static void main (String[] args) {
         DisjointSet ds = new DisjointSet(7);
         ds.unionByRank(1, 2);
