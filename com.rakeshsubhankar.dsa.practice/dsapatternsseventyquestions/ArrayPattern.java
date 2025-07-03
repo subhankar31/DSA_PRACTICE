@@ -72,7 +72,57 @@ public class ArrayPattern {
          return result;
 
      }
+     //Question - 4 Leet Code Two Sum
+    //Leet Code URL -> https://leetcode.com/problems/two-sum/submissions/1685063785/
+     public int[] twoSum(int[] nums, int target) {
+         int[] result=new int[2];
+         Map<Integer,Integer> hash=new HashMap<>(); //key->index ,Value->value
+         for(int i=0;i<nums.length;i++){
+             if(hash.containsKey(target-nums[i])){
+                 result[0]=i;
+                 result[1]=hash.get(target-nums[i]);
+             }
+             else hash.put(nums[i],i);
+         }
+         return result;
+     }
+     //Question -5 how-many-numbers-are-smaller-than-the-current-number
+    //Leet Code URL - > https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/description/
+
+    public int[] smallerNumbersThanCurrent(int[] nums) {
+        int [] temp=Arrays.copyOf(nums, nums.length); //This will make a copy
+        Arrays.sort(temp);
+        Map<Integer,Integer> hash=new HashMap<>();
+        for(int i=0;i<temp.length;i++){
+            if(!hash.containsKey(temp[i])){
+                hash.put(temp[i],i);
+            }
+        }
+        int [] res=new int[nums.length];
+        for(int i=0;i<nums.length;i++){
+            res[i]=hash.get(nums[i]);
+        }
+        return res;
+    }
+
+    //Question -6  Minimum Time Visiting All Points
+    //Leet Code URL - > https://leetcode.com/problems/minimum-time-visiting-all-points/
+    public int minTimeToVisitAllPoints(int[][] points) {
+        int res=0;
+        for (int i = 0; i < points.length - 1; i++) {
+            int x1 = points[i][0];
+            int y1 = points[i][1];
+
+            int x2 = points[i + 1][0];
+            int y2 = points[i + 1][1];
+            res+=Math.max(Math.abs(y2-y1),Math.abs(x2-x1));
+        }
+        return res;
+    }
+
+
     public static void main(String[] args) {
+        ArrayPattern arrayPattern=new ArrayPattern();
 
     }
 }
