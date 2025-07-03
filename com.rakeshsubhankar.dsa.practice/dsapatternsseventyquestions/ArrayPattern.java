@@ -1,5 +1,6 @@
 package dsapatternsseventyquestions;
 
+import java.net.Inet4Address;
 import java.util.*;
 
 public class ArrayPattern {
@@ -119,7 +120,44 @@ public class ArrayPattern {
         }
         return res;
     }
+    //Question -7 Spiral Matrix
+    //Leet Code URL - > https://leetcode.com/problems/spiral-matrix/
 
+    public List<Integer> spiralOrder(int[][] mat) {
+        int n=mat.length;
+        int m=mat[0].length;
+        List<Integer> res=new ArrayList<>();
+        //define all starting points
+        int left=0,right=m-1;
+        int top=0,bottom=n-1;
+
+        //traversing started
+        //1.move from left to right
+        for(int i=left;i<=right;i++){
+            res.add(mat[top][i]);
+        }
+        top++; //move top to second row
+        //2. Move from top to bottom
+        for(int i=top;i<=bottom;i++){
+            res.add(mat[i][right]);
+        }
+        right--;
+        //3/move from  right to left
+        if(top<=bottom){
+            for(int i=right;i>=left;i--){
+                res.add(mat[bottom][i]);
+            }
+            bottom--;
+        }
+        //4. Move from bottom to top
+        if (left <= right) { //edge case handled
+            for (int i = bottom; i >= top; i--)
+                res.add(mat[i][left]);
+
+            left++;
+        }
+        return res;
+    }
 
     public static void main(String[] args) {
         ArrayPattern arrayPattern=new ArrayPattern();
