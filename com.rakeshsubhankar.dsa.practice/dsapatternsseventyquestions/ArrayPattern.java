@@ -158,6 +158,131 @@ public class ArrayPattern {
         }
         return res;
     }
+    //Question -8 Number if Island
+    //Leet Code URL - > https://leetcode.com/problems/number-of-islands/
+    //The below solution give Time limit excedeed so I solved using one more approach where no extra [][] needed
+    public int numIslands(char[][] grid) {
+        int count=0;
+        int n=grid.length;
+        int m=grid[0].length;
+        int vis[][] =new int[n][m];
+        for(int row=0;row<n;row++){
+            for (int col=0;col<m;col++){
+                if(grid[row][col]=='1' && vis[row][col]==0){
+                    count++;
+                    bfsTraversal(row,col,vis,grid,n,m);
+                }
+            }
+        }
+        return count;
+    }
+    //supporting method for above question
+    void bfsTraversal(int row,int col, int[][] vis , char [][] grid, int n, int m){
+        //Declare Queue for the traversal purpose
+        Queue<Pair> queue= new LinkedList<>();
+        queue.add(new Pair(row,col));
+
+        while (!queue.isEmpty()){
+            int[] delrow = {-1, 0, 1, 0};
+            int[] delcol = {0, 1, 0, -1};
+            int currentRow=queue.peek().row;
+            int currentCol=queue.peek().col;
+            queue.remove();
+            //traverse the adjacent and mark them visited
+            for(int k=0;k<4;k++)
+            {
+                int newRow=currentRow+delrow[k];
+                int newCol=currentCol+delcol[k];
+                //chech for valid condition
+                if(newRow>0 && newRow<=n && newCol>0 && newCol<=m && grid[newRow][newCol]=='1'){
+                    vis[newRow][newCol]=1;
+                    queue.add(new Pair(newRow,newCol));
+                }
+            }
+
+        }
+
+    }
+    //Approach -2
+    public int numIslandsSecondApproach(char[][] grid) {
+        if (grid == null || grid.length == 0) return 0;
+
+        int islands = 0;
+        int rows = grid.length, cols = grid[0].length;
+
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < cols; j++)
+                if (grid[i][j] == '1') {
+                    islands++;
+                    bfs(grid, i, j);
+                }
+
+        return islands;
+    }
+
+    private void bfs(char[][] grid, int i, int j) {
+        Queue<int[]> q = new LinkedList<>();
+        q.offer(new int[]{i, j});
+        grid[i][j] = '0';
+
+        int[][] dirs = {{1,0}, {-1,0}, {0,1}, {0,-1}};
+
+        while (!q.isEmpty()) {
+            int[] curr = q.poll();
+            for (int[] d : dirs) {
+                int ni = curr[0] + d[0];
+                int nj = curr[1] + d[1];
+
+                if (ni >= 0 && nj >= 0 && ni < grid.length && nj < grid[0].length && grid[ni][nj] == '1') {
+                    q.offer(new int[]{ni, nj});
+                    grid[ni][nj] = '0';
+                }
+            }
+        }
+    }
+
+    /**
+     * ARRAYS TWO POINTER PATTERN STARTED
+     *
+     */
+    //Question -9  Best Time to Buy and Sell Stock
+    //Leet Code URL - > https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+    public int maxProfit(int[] prices) {
+        int maxProfit=0;
+        int minPrice=Integer.MAX_VALUE;
+        for(int i=0;i<prices.length;i++){
+            minPrice=Math.min(minPrice,prices[i]); //As we remember the price on the Go so its part of Dynamic  PRogramming Topic
+            maxProfit=Math.max(maxProfit,prices[i]-minPrice);
+        }
+        return maxProfit;
+    }
+    //Question -10 Leet Code 977. Squares of a Sorted Array
+    //Leet Code URL - > https://leetcode.com/problems/squares-of-a-sorted-array/description/
+    public int[] sortedSquares(int[] nums) {
+        for(int i=0;i<nums.length;i++){
+            nums[i]=Math.abs(nums[i]*nums[i]);
+        }
+        Arrays.sort(nums);
+        return nums;
+
+    }
+    // TODO Second Approach using 2 pointer Not giving correct Answer
+    public int[] sortedSquaresTwo(int[] nums) {
+        int left=0;
+        int right=nums.length-1;
+        int res[]=new int[nums.length];
+        while (left<=right){
+            if(Math.abs(nums[left]*nums[left])<Math.abs(nums[right]*nums[right])){
+                res[left]=Math.abs(nums[left]*nums[left]);
+                left++;
+            }
+            else {
+                res[right]=Math.abs(nums[right]*nums[right]);
+                right--;
+            }
+        }
+        return res;
+    }
 
     public static void main(String[] args) {
         ArrayPattern arrayPattern=new ArrayPattern();
