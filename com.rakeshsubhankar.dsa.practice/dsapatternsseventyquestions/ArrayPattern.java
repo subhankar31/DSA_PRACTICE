@@ -1,6 +1,7 @@
 package dsapatternsseventyquestions;
 
-import java.net.Inet4Address;
+import dsapatternsseventyquestions.util.Pair;
+
 import java.util.*;
 
 public class ArrayPattern {
@@ -402,10 +403,43 @@ public class ArrayPattern {
         // If no duplicate element is found then return false...
         return false;
     }
-    //Question -14
-    //Leet Code URL - >
+    //Question -14 Leet Code 1200. Minimum Absolute Difference
+    //Leet Code URL - > https://leetcode.com/problems/minimum-absolute-difference/description/
+    //18ms in Leet Code and best in class
+
+    public List<List<Integer>> minimumAbsDifference(int[] arr) {
+        List<List<Integer>> output=new ArrayList<>();
+        Arrays.sort(arr); //sorted so that we can compare 2 elements with min abs difference
+        int absDifferenceMin=Integer.MAX_VALUE; //initialize with a big int value
+        for(int i=1;i<arr.length;i++){ //check the abs min difference
+            absDifferenceMin=Math.min(absDifferenceMin,arr[i]-arr[i-1]);
+        }
+        for(int i=1;i<arr.length;i++){ //2 pointer approach started from index 1 to end and compared with the prev element
+            if(Math.abs(arr[i]-arr[i-1])==absDifferenceMin){ //if its same as abs difference then take it
+                output.add(Arrays.asList(arr[i-1],arr[i])); //first element is at i-1 and second element is at i
+            }
+        }
+        return output;
+    }
+    //Question -15 Leet Code 209. Minimum Size Subarray Sum
+    //Leet Code URL - > https://leetcode.com/problems/minimum-size-subarray-sum/description/
+    //Top solution in java category in Leet Code
+    public int minSubArrayLen(int target, int[] nums) {
+        int minLength=Integer.MAX_VALUE;
+        int l=0;
+        int sum=0;
+        for(int r=0;r<nums.length;r++){ //2 pointer approach using l and r
+            sum+=nums[r]; //add the current element to sum
+            while (sum>=target){
+                minLength=Math.min(minLength,r-l+1); //update min length at each go when sum >= target
+                sum-=nums[l]; //here we reduce the window by increasing 'l' so we remove the current l element from sum and do 'l' ++
+                l++;
+            }
+        }
+        return minLength==Integer.MAX_VALUE?0:minLength;
+    }
     public static void main(String[] args) {
         ArrayPattern arrayPattern=new ArrayPattern();
-
+        //Test any methods/Questions
     }
 }
