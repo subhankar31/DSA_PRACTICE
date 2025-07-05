@@ -283,7 +283,127 @@ public class ArrayPattern {
         }
         return res;
     }
+    //Question -11 Leet Code 15 3 SUM Problem
+    //Leet Code URL - > https://leetcode.com/problems/3sum/
+    //This solution uses T.C -> O(n^2); 2531 ms in Leet Code
+    public List<List<Integer>> threeSum(int[] nums) {
+        Set<List<Integer>> outputSet=new HashSet<>();
+        for(int i=0;i<nums.length;i++){
+            Set<Integer> hashset=new HashSet<>();
+            for(int j=i+1;j<nums.length;j++){
+                int remaining = -(nums[i]+nums[j]);
+                if(hashset.contains(remaining)){
+                    List<Integer>tempList=Arrays.asList(nums[i],nums[j],remaining);
+                    tempList.sort(null);
+                    outputSet.add(tempList);
 
+                }
+                hashset.add(nums[j]);
+
+            }
+        }
+        List<List<Integer>> finalResult=new ArrayList<>(outputSet);
+        return finalResult;
+    }
+    //Approach 2 using 2 Sum T.C -> O(n) + O(n log n)
+    // 23 ms taken on Leet Code
+    public List<List<Integer>> threeSumOptimized(int[] nums) {
+        // sort our array first to make from smallest to largest
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums);
+        // this is first number position
+        for(int i = 0; i < nums.length; i++){
+            // if i > 0 means we can't find answer
+            if(nums[i] > 0){
+                return result;
+            }
+            if(i > 0 && nums[i] == nums[i-1]){
+                continue;
+            }
+            int left = i + 1;
+            int right = nums.length - 1;
+            while(left < right){
+                int sum = nums[i] + nums[left] + nums[right];
+                // value larger than 0
+                if(sum > 0){
+                    // move right pointer make sum smaller
+                    right--;
+                }
+                else if(sum < 0){
+                    // move left pointer make sum larger
+                    left++;
+                }
+                else{
+                    // it's equal push our result into our result array
+                    result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                    while(left < right && nums[left] == nums[left+1]){
+                        left++;
+                    }
+                    while(left < right && nums[right] == nums[right - 1]){
+                        right--;
+                    }
+
+                    left++;
+                    right--;
+                }
+            }
+        }
+        // return our answer
+        return result;
+    }
+    //Question -12 Leet Code 845. Longest Mountain in Array
+    //Leet Code URL - >https://leetcode.com/problems/longest-mountain-in-array/description/
+
+    public int longestMountain(int[] arr) {
+        int res=0;
+        //Traverse from first index to second last
+        //skip the first and last to calculate prev and next on the fly
+        for(int i=1;i<arr.length-1;i++){
+            if(arr[i]>arr[i-1] && arr[i]>arr[i+1]){ //Its a Mountain
+                int left=i; //keep both left and right at the mountain top then move both direction
+                int right=i;
+                while(left>=1 && arr[left]>arr[left-1]){
+                    left--; //move towards left
+                }
+                while(right<=arr.length-2 && arr[right]>arr[right+1]){
+                    right++; //move towards right
+                }
+                res=Math.max(res,right-left+1); //finally after getting the proper mountain range calculate the size
+            }
+        }
+        return res;
+    }
+    /**
+     * ARRAYS SLIDING WINDOW PATTERN STARTED
+     *
+     */
+    //Question -13 Leet Code 219. Contains Duplicate II
+    //Leet Code URL - > https://leetcode.com/problems/contains-duplicate-ii/description/
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        // Base case...
+        if(nums == null || nums.length < 2 || k == 0)
+            return false;
+        int i = 0; //sliding window first pointer
+        // Create a Hash Set for storing previous of k unique  elements...
+        HashSet<Integer> hset = new HashSet<Integer>();
+        // Traverse for all elements of the given array in a for loop...
+        for(int j = 0; j < nums.length; j++) {
+            // If duplicate element is present at distance less than equal to k, return true...
+            if(!hset.add(nums[j])){ //here it adds the element in case its not already present as its a type of Set
+                return true; //return true means we found duplicate element as well the size is under k
+            }
+            // If size of the Hash Set becomes greater than k...
+            if(hset.size() >= k+1){
+                // Remove the first element in hset because even if we have same duplicate element later on then also it will not sattify
+                // our condition of abs(i - j) <= k. so its safe to remove the element and move i pointer
+                hset.remove(nums[i++]);
+            }
+        }
+        // If no duplicate element is found then return false...
+        return false;
+    }
+    //Question -14
+    //Leet Code URL - >
     public static void main(String[] args) {
         ArrayPattern arrayPattern=new ArrayPattern();
 
