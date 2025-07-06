@@ -5,4 +5,5 @@
 -Below you can refer for the indexing part.
 Pattern:
 1)ArraysPattern Question N.O- 1 to 15
-2)BitmanipulationPattern Question N.O- 16 to 
+2)BitmanipulationPattern Question N.O- 16
+3)DynamicProgrammingPattern Question N.O- 17 to Continue
