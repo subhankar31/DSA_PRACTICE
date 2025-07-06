@@ -107,11 +107,10 @@ public class DynamicProgrammingPattern {
      */
     public int[] countBitsOptimized(int n) {
         int [] res=new int[n+1]; //as we need to store from 0 till n
-        //Brute force solution
         for(int i=0;i<=n;i++){
-            if(i%2==0){
-                res[i]=res[i/2];
-            }else res[i]=res[i/2]+1;
+            if(i%2==0){ //if its even
+                res[i]=res[i/2]; //in case of even bits for number n will be same as bits in number n/2
+            }else res[i]=res[i/2]+1; //in case of odd bits for number n will be same as bits in number n/2+1
         }
         return res;
     }
