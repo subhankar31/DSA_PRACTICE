@@ -200,9 +200,7 @@ public class ArrayPattern {
                     queue.add(new Pair(newRow,newCol));
                 }
             }
-
         }
-
     }
     //Approach -2
     public int numIslandsSecondApproach(char[][] grid) {
@@ -314,11 +312,11 @@ public class ArrayPattern {
         Arrays.sort(nums);
         // this is first number position
         for(int i = 0; i < nums.length; i++){
-            // if i > 0 means we can't find answer
+            // if i > 0 means we can't find answer as target is given as 0 is our case
             if(nums[i] > 0){
                 return result;
             }
-            if(i > 0 && nums[i] == nums[i-1]){
+            if(i > 0 && nums[i] == nums[i-1]){ //don't add duplicate numbers
                 continue;
             }
             int left = i + 1;
@@ -343,7 +341,6 @@ public class ArrayPattern {
                     while(left < right && nums[right] == nums[right - 1]){
                         right--;
                     }
-
                     left++;
                     right--;
                 }
@@ -357,7 +354,7 @@ public class ArrayPattern {
 
     public int longestMountain(int[] arr) {
         int res=0;
-        //Traverse from first index to second last
+        //Traverse from second index to second last i.e 1->n-1
         //skip the first and last to calculate prev and next on the fly
         for(int i=1;i<arr.length-1;i++){
             if(arr[i]>arr[i-1] && arr[i]>arr[i+1]){ //Its a Mountain

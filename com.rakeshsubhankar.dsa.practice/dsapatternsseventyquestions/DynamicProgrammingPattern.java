@@ -78,7 +78,74 @@ public class DynamicProgrammingPattern {
         }
         return maxSum;
     }
-    //Question -12 Leet Code
-    //Leet Code URL - >
+    //Question -20 Leet Code 338. Counting Bits
+    //Leet Code URL - > https://leetcode.com/problems/counting-bits/description/
+    //This solution takes 6ms and can be optimized
+    public int[] countBits(int n) {
+        int [] res=new int[n+1]; //as we need to store from 0 till n
+        //Brute force solution
+        for(int i=0;i<=n;i++){
+            int count=0;
+            int num=i;
+            while(num!=0){ //basic math to get last digit
+                count+=num%2; //if last bit is 1 then increase counter
+                num=num/2; //remove last bit
+            }
+            res[i]=count;
+        }
+        return res;
+    }
+
+    /**
+     * Logis :
+     * We will perform bottom up DP[] approach
+     * for each number from 0 till n
+     * if n is even then the answer will be equal to n/2 which is pre computed
+     * if n is odd then the answer will be equal to n/2 +1
+     * This way we will progress till N and return the result
+     * T.C -> O(n) 2ms in Leet Code
+     */
+    public int[] countBitsOptimized(int n) {
+        int [] res=new int[n+1]; //as we need to store from 0 till n
+        //Brute force solution
+        for(int i=0;i<=n;i++){
+            if(i%2==0){
+                res[i]=res[i/2];
+            }else res[i]=res[i/2]+1;
+        }
+        return res;
+    }
+    //Question -21 Leet Code 303. Range Sum Query - Immutable
+    //Leet Code URL - >  https://leetcode.com/problems/range-sum-query-immutable/description/
+    //Brute force solution without Dynamic Programming . TC- 55 ms in Leet Code
+    int [] nums;
+     void numArray(int[] nums) {
+        this.nums=nums;
+    }
+    public int sumRange(int left, int right) {
+        int sum=0;
+        for(int i=left;i<=right;i++){ //loop in the range and calculate sum
+            sum+=nums[i];
+        }
+        return sum;
+    }
+    //Using Dynamic Programming Tc -> 8 ms
+    int [] pNums;
+    void NumArray(int[] nums) {
+        pNums=prefixSum(nums); //method call to find Prefix sum
+    }
+    public int sumRangeOptimized(int left, int right) { //T.C constant time O(1)
+        int sum=0;
+        sum+=pNums[right+1]-pNums[left]; //return the result directly from right value - left value
+        return sum;
+    }
+    int [] prefixSum(int [] nums){ //T.C O(n) one time
+        int [] prefix=new int [nums.length+1]; //taking one extra bit
+        prefix[0]=0; //prefixc sum till index 0 will always be 0
+        for(int i=0;i<nums.length;i++){
+            prefix[i+1]=prefix[i]+nums[i]; //do the prefix sum here by adding the previous result
+        }
+        return prefix;
+    }
 
 }
