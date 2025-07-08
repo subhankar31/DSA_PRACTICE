@@ -8,5 +8,6 @@ Pattern:
 2)BitmanipulationPattern Question N.O- 16
 3)DynamicProgrammingPattern Question N.O- 17 to 21
 4)BacktrackingPattern Question N.O 22 to 25
-5)LinkedListPattern Question N.O 26 to 
+5)LinkedListPattern Question N.O 26 to 32
+6)StackPattern Question N.O 33 to 
 
