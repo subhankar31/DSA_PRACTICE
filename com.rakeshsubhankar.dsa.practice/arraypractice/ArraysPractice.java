@@ -303,4 +303,19 @@ public class ArraysPractice {
         return -1;
 
     }
+    public void test(){
+        Map<Integer,Integer> mapN =new HashMap<>();
+        mapN.put(1,15);
+        mapN.put(1,13);
+
+        Deque<Integer> testQueue=new LinkedList<>();
+        Map<Integer,Integer> map=new Hashtable<>();
+
+        List<String> inp=List.of("Rakesh","Rajesh");
+        List<Integer> inpInt=List.of(10,11,2,6,1,21);
+        inpInt.stream()
+                .max(Integer::compareTo);
+
+
+    }
 }
