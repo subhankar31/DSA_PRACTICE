@@ -73,7 +73,18 @@ public class StackPattern {
     //Question -35 Leet Code 150. Evaluate Reverse Polish Notation
     //Leet Code URL - > https://leetcode.com/problems/evaluate-reverse-polish-notation/description/
 
-
+    /**
+     * Explanation:
+     1. tokens[i].length() == 1
+     This checks that the token is a single character.
+     That makes sense because operators like +, -, *, / are usually single characters.
+     This filters out multi-character operands like "12", "100", etc.
+     2. tokens[i].charAt(0) < 48
+     charAt(0) fetches the first (and only) character of the token.
+     In ASCII/Unicode, character codes for digits '0' to '9' range from 48 to 57.
+     So tokens[i].charAt(0) < 48 is checking whether the character is less than '0' in ASCII.
+     This would include characters like: +, -, *, /, (, ), etc.
+     */
     public int evalRPN(String[] tokens) {
         Stack<Long> stack = new Stack<>();
         int n = tokens.length;
@@ -99,7 +110,7 @@ public class StackPattern {
         else if (Operator == '*') return a * b;
         return a / b;
     }
-    //Question -36 Leet Code
-    //Leet Code URL - >
+    //Question -36 Leet Code - Not available
+    //Leet Code URL - > Not Available
 
 }

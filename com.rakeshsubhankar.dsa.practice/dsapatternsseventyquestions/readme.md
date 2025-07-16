@@ -9,5 +9,7 @@ Pattern:
 3)DynamicProgrammingPattern Question N.O- 17 to 21
 4)BacktrackingPattern Question N.O 22 to 25
 5)LinkedListPattern Question N.O 26 to 32
-6)StackPattern Question N.O 33 to 
+6)StackPattern Question N.O 33 to 36
+7)QueuePattern Question N.O 37 to 39
+8)BinaryTreePattern Question N.O 40 to 
 
