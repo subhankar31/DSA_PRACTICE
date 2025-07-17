@@ -1,6 +1,113 @@
 package dsapatternsseventyquestions;
 
+import dsapatternsseventyquestions.util.TreeNode;
+import dsapatternsseventyquestions.util.TreeNodeLevelPair;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class BinaryTreePattern {
-    //Question -40 Leet Code ->
-    //Leet Code URL - >
+    //Question -40 Leet Code -> 637. Average of Levels in Binary Tree
+    //Leet Code URL - > https://leetcode.com/problems/average-of-levels-in-binary-tree/
+    public List<Double> averageOfLevels(TreeNode root) {
+        List<Double> res = new ArrayList<>();
+        if (root == null) return res;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            int level = queue.size();
+            double sum = 0.0;
+
+            for (int i = 0; i < level; i++) {
+                TreeNode curr = queue.poll();
+                sum += curr.val;
+                if (curr.left != null) queue.offer(curr.left);
+                if (curr.right != null) queue.offer(curr.right);
+            }
+            res.add(sum / level);
+        }
+        return res;
+    }
+
+    //Question -41 Leet Code 111. Minimum Depth of Binary Tree
+    //Leet Code URL - > https://leetcode.com/problems/minimum-depth-of-binary-tree/description/
+    //This below approach is solved suing level order (BFS) and in Leet Code 2nd previous submitted solution will be in DFS
+    public int minDepth(TreeNode root) {
+        if(root==null){
+            return 0;
+        }
+       Queue<TreeNodeLevelPair> queue=new LinkedList<>();
+        queue.add(new TreeNodeLevelPair(root,1));
+        while (!queue.isEmpty()){
+            TreeNodeLevelPair pair=queue.poll();
+            TreeNode node=pair.node;
+            int level=pair.level;
+            if(node.left==null && node.right==null){
+                return level;
+            }
+            if(node.left!=null) {
+                queue.add(new TreeNodeLevelPair(node.left,level+1));
+            }
+            if(node.right!=null) {
+                queue.add(new TreeNodeLevelPair(node.right,level+1));
+            }
+        }
+        return 0;
+    }
+    //Question -42 Leet Code 104. Maximum Depth of Binary Tree
+    //Leet Code URL - > https://leetcode.com/problems/maximum-depth-of-binary-tree/
+    public int maxDepth(TreeNode root) {
+        //if we reached leaf node case of Tree itself is null
+        if (root==null) return 0;
+
+        //calculate the left and right sub tree
+        int lh=maxDepth(root.left);
+        int rh=maxDepth(root.right);
+
+        //as we want total depth/height so we only consider the max height subtree and
+        //add it with the root node so we added 1+
+        return 1+Math.max(lh,rh);
+
+    }
+    //Question -43 Leet Code Not avilable
+    //Concept -> to find min and max value in Binary tree , Soln - traverse all and update min and max on the fly
+
+    //Question -44 Leet Code 102. Binary Tree Level Order Traversal
+    //Leet Code URL  -> https://leetcode.com/problems/binary-tree-level-order-traversal/description/
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> ans=new ArrayList<>();
+        Queue<TreeNode> queue=new LinkedList<TreeNode>();
+        if(root==null) return ans;
+        queue.add(root);
+        while(!queue.isEmpty()){
+            int queueSize=queue.size();
+            List<Integer> subans=new ArrayList<>();
+            for(int i=0;i<queueSize;i++){
+                TreeNode node=queue.poll();
+                if(node.left!=null) queue.add(node.left);
+                if(node.right!=null) queue.add(node.right);
+                subans.add(node.val);
+            }
+            ans.add(subans);
+        }
+
+        return ans;
+    }
+    //Question -45 Leet Code 100. Same Tree
+    //Leet Code URL  -> https://leetcode.com/problems/same-tree/description/
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if(p==null && q==null){
+            return true;
+        } else if(p==null || q==null || p.val != q.val){
+            return false;
+        }
+        return (isSameTree(p.left, q.left) && isSameTree(p.right, q.right));
+    }
+    //Question -46 Leet Code 112. Path Sum
+    //Leet Code URL  -> https://leetcode.com/problems/path-sum/description/
+
+
+
 }
