@@ -1,12 +1,11 @@
 package dsapatternsseventyquestions;
 
+import com.sun.source.tree.Tree;
+import dsapatternsseventyquestions.util.PairTwo;
 import dsapatternsseventyquestions.util.TreeNode;
 import dsapatternsseventyquestions.util.TreeNodeLevelPair;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class BinaryTreePattern {
     //Question -40 Leet Code -> 637. Average of Levels in Binary Tree
@@ -107,6 +106,76 @@ public class BinaryTreePattern {
     }
     //Question -46 Leet Code 112. Path Sum
     //Leet Code URL  -> https://leetcode.com/problems/path-sum/description/
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        Stack< PairTwo> stack=new Stack<>();
+        stack.add(new PairTwo(root, root.val));
+        while (!stack.isEmpty()){
+            PairTwo pair=stack.pop();
+            TreeNode node=pair.node;
+            int pathSum= pair.pathSum;
+            if (node.left==null && node.right==null && pathSum==targetSum){
+                return true;
+            }
+            if(node.right!= null) stack.add(new PairTwo(node.right,pathSum+node.right.val));
+            if(node.left!= null) stack.add(new PairTwo(node.left,pathSum+node.left.val));
+
+        }
+        return false;
+    }
+    //Below solution uses DFS
+    public boolean hasPathSumUsingDFS(TreeNode root, int targetSum) {
+        if (root == null) return false;
+
+        if (root.left == null && root.right == null) {
+            return root.val == targetSum;
+        }
+
+        return hasPathSum(root.left, targetSum - root.val)
+                || hasPathSum(root.right, targetSum - root.val);
+    }
+    //Question -47 Leet Code 543. Diameter of Binary Tree
+    //Leet Code URL  -> https://leetcode.com/problems/diameter-of-binary-tree/
+    int maxDiameter=0;
+    public int diameterOfBinaryTree(TreeNode root) {
+        int height=maxDiam(root);
+        return maxDiameter;
+    }
+    int maxDiam(TreeNode node){
+        if(node==null) return 0;
+        int lh=maxDiam(node.left);
+        int rh=maxDiam(node.right);
+        maxDiameter=Math.max(maxDiameter,lh+rh);
+
+        return 1+Math.max(lh,rh);
+    }
+
+    //Question -48 Leet Code 226. Invert Binary Tree
+    //Leet Code URL  -> https://leetcode.com/problems/invert-binary-tree/description/
+    public TreeNode invertTree(TreeNode root) {
+        if(root == null)    return null;
+
+        TreeNode l = invertTree(root.left);
+        TreeNode r = invertTree(root.right);
+
+        root.left = r;
+        root.right = l;
+
+        return root;
+    }
+    //Question -49 Leet Code 236. Lowest Common Ancestor of a Binary Tree
+    //Leet Code URL  -> https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/
+    //Use Rough practice to understand or watch video
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root==null || root==p || root==q){
+            return root;
+        }
+        TreeNode left=lowestCommonAncestor(root.left,p,q);
+        TreeNode right=lowestCommonAncestor(root.right,p,q);
+
+        if(left==null) return right;
+        else if(right==null) return left;
+        else return root;
+    }
 
 
 

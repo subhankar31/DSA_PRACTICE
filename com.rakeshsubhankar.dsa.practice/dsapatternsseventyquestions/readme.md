@@ -11,5 +11,6 @@ Pattern:
 5)LinkedListPattern Question N.O 26 to 32
 6)StackPattern Question N.O 33 to 36
 7)QueuePattern Question N.O 37 to 39
-8)BinaryTreePattern Question N.O 40 to 
+8)BinaryTreePattern Question N.O 40 to 49
+9)BinarySearchTreePattern Question N.O 50 to 
 
