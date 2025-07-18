@@ -166,6 +166,8 @@ public class BinaryTreePattern {
     //Leet Code URL  -> https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/
     //Use Rough practice to understand or watch video
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        //If root is null, it means we reached the end of a branch — return null.
+        //If root equals p or q, we found one of the nodes we are looking for — return that node.
         if(root==null || root==p || root==q){
             return root;
         }
@@ -174,6 +176,10 @@ public class BinaryTreePattern {
 
         if(left==null) return right;
         else if(right==null) return left;
+        //If both left and right are non-null, it means:
+        //p was found in one subtree,
+        //q was found in the other.
+        //Therefore, the current root is their lowest common ancestor.
         else return root;
     }
 

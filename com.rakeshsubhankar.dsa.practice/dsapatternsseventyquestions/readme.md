@@ -12,5 +12,6 @@ Pattern:
 6)StackPattern Question N.O 33 to 36
 7)QueuePattern Question N.O 37 to 39
 8)BinaryTreePattern Question N.O 40 to 49
-9)BinarySearchTreePattern Question N.O 50 to 
+9)BinarySearchTreePattern Question N.O 50 to 58
+10)HeapsPattern Question N.O 59 to 
 

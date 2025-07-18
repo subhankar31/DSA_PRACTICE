@@ -7,7 +7,7 @@ public class TreeNode {
 
     // Constructor to initialize
     // the node with a dataue
-    TreeNode(int val) {
+    public TreeNode(int val) {
         val = TreeNode.this.val;
         left = null;
         right = null;
