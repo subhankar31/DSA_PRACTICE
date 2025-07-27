@@ -141,12 +141,6 @@ public class GraphPattern {
         return finishedCourses == numCourses;
     }
 
-
     //TODO Completed //
-
-
-
-
-
 
 }

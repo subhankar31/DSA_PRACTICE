@@ -42,6 +42,7 @@ public class ArrayPattern {
         return flag;
      }
      //Question 2 EASY Find Missing NUmber from 0 -> n
+     //LeetCode URl-> https://leetcode.com/problems/missing-number/description/
     //Logic :
     //You're adding i (the expected value)
     //Subtracting nums[i] (the actual value)
@@ -63,24 +64,22 @@ public class ArrayPattern {
          for (int num : nums) {
              seen.add(num);
          }
-
          List<Integer> result = new ArrayList<>();
          for (int i = 1; i <= nums.length; i++) {
              if (!seen.contains(i)) {
                  result.add(i);
              }
          }
-
          return result;
-
      }
      //Question - 4 Leet Code Two Sum
     //Leet Code URL -> https://leetcode.com/problems/two-sum/submissions/1685063785/
      public int[] twoSum(int[] nums, int target) {
          int[] result=new int[2];
-         Map<Integer,Integer> hash=new HashMap<>(); //key->index ,Value->value
+         Map<Integer,Integer> hash=new HashMap<>(); //key->value ,Value->index
          for(int i=0;i<nums.length;i++){
              if(hash.containsKey(target-nums[i])){
+                 //return result of both the index
                  result[0]=i;
                  result[1]=hash.get(target-nums[i]);
              }
