@@ -32,7 +32,7 @@ public class BinaryTreePattern {
 
     //Question -41 Leet Code 111. Minimum Depth of Binary Tree
     //Leet Code URL - > https://leetcode.com/problems/minimum-depth-of-binary-tree/description/
-    //This below approach is solved suing level order (BFS) and in Leet Code 2nd previous submitted solution will be in DFS
+    //This below approach is solved using level order (BFS) and in Leet Code 2nd previous submitted solution will be in DFS
     public int minDepth(TreeNode root) {
         if(root==null){
             return 0;
@@ -107,6 +107,10 @@ public class BinaryTreePattern {
     //Question -46 Leet Code 112. Path Sum
     //Leet Code URL  -> https://leetcode.com/problems/path-sum/description/
     public boolean hasPathSum(TreeNode root, int targetSum) {
+        /**
+         * We have used Stack here in place of Queue just to do DFS traversal without using Recursion
+         * We can also use Queue and BFS traversal to do this , Refer GPT for Queue based solution
+         */
         Stack< PairTwo> stack=new Stack<>();
         stack.add(new PairTwo(root, root.val));
         while (!stack.isEmpty()){
@@ -122,7 +126,7 @@ public class BinaryTreePattern {
         }
         return false;
     }
-    //Below solution uses DFS
+    //Approach-2 Below solution uses DFS
     public boolean hasPathSumUsingDFS(TreeNode root, int targetSum) {
         if (root == null) return false;
 
@@ -137,7 +141,7 @@ public class BinaryTreePattern {
     //Leet Code URL  -> https://leetcode.com/problems/diameter-of-binary-tree/
     int maxDiameter=0;
     public int diameterOfBinaryTree(TreeNode root) {
-        int height=maxDiam(root);
+        int height=maxDiam(root); //height variable is just used to hold the value as the method is not void type , Actual result will be stored inside maxDiameter
         return maxDiameter;
     }
     int maxDiam(TreeNode node){

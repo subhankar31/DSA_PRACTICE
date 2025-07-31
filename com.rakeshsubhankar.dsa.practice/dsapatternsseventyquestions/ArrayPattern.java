@@ -110,6 +110,8 @@ public class ArrayPattern {
     //Leet Code URL - > https://leetcode.com/problems/minimum-time-visiting-all-points/
     public int minTimeToVisitAllPoints(int[][] points) {
         int res=0;
+        // ex- [[1,2],[3,4] --> x1=1,y1=2,x2=3,y2=4
+        //so loop it till n-1 index
         for (int i = 0; i < points.length - 1; i++) {
             int x1 = points[i][0];
             int y1 = points[i][1];
@@ -311,7 +313,7 @@ public class ArrayPattern {
         Arrays.sort(nums);
         // this is first number position
         for(int i = 0; i < nums.length; i++){
-            // if i > 0 means we can't find answer as target is given as 0 is our case
+            // if i > 0 means we can't find answer as target is given as 0 is our case and Array is sorted
             if(nums[i] > 0){
                 return result;
             }
@@ -334,6 +336,7 @@ public class ArrayPattern {
                 else{
                     // it's equal push our result into our result array
                     result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                    //then make sure we take only unique element
                     while(left < right && nums[left] == nums[left+1]){
                         left++;
                     }

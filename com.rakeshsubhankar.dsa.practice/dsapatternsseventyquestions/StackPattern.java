@@ -93,11 +93,11 @@ public class StackPattern {
             if (tokens[i].length() == 1 && tokens[i].charAt(0) < 48) {
                 long integer2 = stack.pop();
                 long integer1 = stack.pop();
-                char operator = tokens[i].charAt(0);
+                char operator = tokens[i].charAt(0); //TODO Be careful while handling operator as we need tokens[i].charAt(0) not only tokens[i]
                 long resolvedAns = resolves(integer1, integer2, operator);
                 stack.push(resolvedAns);
             } else {
-                //if its Operand then simply put to stack
+                //if its Operand then simply put to stack //TODO Be careful while handling operator as we need Long.parseLong
                 stack.push(Long.parseLong(tokens[i]));
             }
         }

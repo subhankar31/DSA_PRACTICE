@@ -37,11 +37,11 @@ public class DynamicProgrammingPattern {
         return minCoins;
     }
     //Approach-2 Tabulation way along with DP[]
-    //TODO Not Fully cleared about the solution
+    //TODO Not Fully cleared about the solution -> Asked GPT and Understood but still need revision
     public int coinChangeTabulation(int[] coins, int amount) {
-        int[] dp = new int[amount + 1];
+        int[] dp = new int[amount + 1]; //dp[i] will store the minimum number of coins needed to make amount i.
         Arrays.fill(dp, Integer.MAX_VALUE);
-        dp[0] = 0;
+        dp[0] = 0; //because 0 coins are needed to make amount 0.
         for(int i = 1; i <= amount; i++) {
             for(int j = 0; j < coins.length; j++) {
 
@@ -54,7 +54,7 @@ public class DynamicProgrammingPattern {
     }
     //Question -18 Leet Code 70. Climbing Stairs
     //Leet Code URL - > https://leetcode.com/problems/climbing-stairs/description/
-    //Best solution in Leet Code
+    //Best solution in Leet Code using Tabulation + space Optimization
     public int climbStairs(int n) {
         if(n==0 || n==1) return 1;
         int cur=1,prev=1; // base case
@@ -65,6 +65,23 @@ public class DynamicProgrammingPattern {
         }
         return cur;
     }
+    //USing memoization Approcach
+    public int climbStairsmemoize(int n) {
+        int[] memo = new int[n + 1];  // Memoization array
+        return climb(n, memo);
+    }
+
+    private int climb(int n, int[] memo) {
+        if (n == 0 || n == 1) return 1;
+
+        // If already computed, return cached result
+        if (memo[n] != 0) return memo[n];
+
+        // Store the result and return
+        memo[n] = climb(n - 1, memo) + climb(n - 2, memo);
+        return memo[n];
+    }
+
     //Question -19 Leet Code 53. Maximum Subarray
     //Leet Code URL - > https://leetcode.com/problems/maximum-subarray/
     //linear TC solution with Dynamic Programming
@@ -128,7 +145,7 @@ public class DynamicProgrammingPattern {
         }
         return sum;
     }
-    //Using Dynamic Programming Tc -> 8 ms
+    // Approach-2 Using Dynamic Programming Tc -> 8 ms
     int [] pNums;
     void NumArray(int[] nums) {
         pNums=prefixSum(nums); //method call to find Prefix sum
