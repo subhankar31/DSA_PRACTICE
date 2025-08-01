@@ -118,7 +118,7 @@ public class BinarySearchTreePattern {
         int cur=root.val; //extracted value for comparison
 
         //if searching node value is greater than current then its on right subtree
-        //here we need to be careful that below we don't just do subtree recursive call rather return the resukt from
+        //here we need to be careful that below we don't just do subtree recursive call rather return the result from
         //there itself , do rough work to better understand , ex - we will get result 2 in the 2nd recursive iteration for the given
         //question and from there we will return 2 which is again returned till first recursive call and we get result as 2
         //Ask chatGpt for clarity if confusion is there
