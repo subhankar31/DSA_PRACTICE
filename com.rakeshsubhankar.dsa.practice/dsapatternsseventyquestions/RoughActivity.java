@@ -29,6 +29,11 @@ public class RoughActivity {
 
         return outputList;
     }
+    public  String reverseWithStringBuilder(String str) {
+       return new StringBuilder(str).reverse().toString();
+
+    }
+
     public static void main(String[] args) {
         //Create obj and test || Copy methods from any series and modify test have fun
         RoughActivity rough=new RoughActivity();

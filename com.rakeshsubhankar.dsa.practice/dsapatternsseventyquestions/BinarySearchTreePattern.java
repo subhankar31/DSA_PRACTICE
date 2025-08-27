@@ -195,14 +195,14 @@ public class BinarySearchTreePattern {
         TreeNode dummy = root;
 
         while(root != null){
-            if(root.val > key){
+            if(root.val > key){ //then key node lies of left half
                 if(root.left != null && root.left.val == key){
                     root.left = helper(root.left);
                     break;
                 }else{
                     root = root.left;
                 }
-            }else{
+            }else{ //then key node lies on right half
                 if(root.right != null && root.right.val == key){
                     root.right = helper(root.right);
                     break;

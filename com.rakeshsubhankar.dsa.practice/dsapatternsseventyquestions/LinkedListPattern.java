@@ -92,12 +92,12 @@ public class LinkedListPattern {
         if (head == null || left == right) {
             return head;
         }
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
-        ListNode prev = dummy;
+        ListNode dummy = new ListNode(0); //create dummy node
+        dummy.next = head; //put dummy node before Head
+        ListNode prev = dummy; //prev will be used to be present before left
 
         for (int i = 0; i < left - 1; i++) {
-            prev = prev.next; //moven the prev till the node before left
+            prev = prev.next; //move the prev till the node before left
         }
 
         ListNode cur = prev.next; //curr pointed to left
