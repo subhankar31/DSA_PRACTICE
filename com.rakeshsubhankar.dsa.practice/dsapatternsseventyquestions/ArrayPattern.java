@@ -307,6 +307,7 @@ public class ArrayPattern {
     }
     //Approach 2 using 2 Sum T.C -> O(n) + O(n log n)
     // 23 ms taken on Leet Code
+    //IMP here we consider duplicate check based on index not value so 
     public List<List<Integer>> threeSumOptimized(int[] nums) {
         // sort our array first to make from smallest to largest
         List<List<Integer>> result = new ArrayList<>();
@@ -317,7 +318,7 @@ public class ArrayPattern {
             if(nums[i] > 0){
                 return result;
             }
-            if(i > 0 && nums[i] == nums[i-1]){ //don't add duplicate numbers
+            if(i > 0 && nums[i] == nums[i-1]){ //don't add duplicate numbers for first index
                 continue;
             }
             int left = i + 1;
